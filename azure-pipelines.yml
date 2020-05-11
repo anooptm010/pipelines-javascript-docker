@@ -24,4 +24,5 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'DestACRLogin'
+    repository: 'cicdtest'
     command: 'push'
