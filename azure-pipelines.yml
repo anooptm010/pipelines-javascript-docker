@@ -13,16 +13,12 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'SourceACRLogin'
-    repository: 'test'
+    repository: 'testsource'
     command: 'build'
     Dockerfile: '**/Dockerfile'
-- task: Docker@2
-  inputs:
-    containerRegistry: 'AquaACRLogin'
-    command: 'login'
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'DestACRLogin'
-    repository: 'cicdtest'
+    containerRegistry: 'DestnACRLogin'
+    repository: 'testdestn'
     command: 'push'
