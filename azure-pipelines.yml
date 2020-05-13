@@ -11,7 +11,7 @@ pool:
 
 
 variables:
-  imageName: 'atmdestnacr.azurecr.io/test'
+  imageName: 'test'
 
 steps:
 - task: Docker@2
@@ -37,6 +37,6 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'DestnACRLogin'
-    repository: 'test'
+    repository: $(imagename)
     command: 'push'
     tags: $(Build.BuildId)
