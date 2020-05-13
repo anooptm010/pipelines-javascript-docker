@@ -12,7 +12,7 @@ pool:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'SourceACRLogin'
+    containerRegistry: 'DestnACRLogin'
     repository: 'test'
     command: 'build'
     Dockerfile: '**/Dockerfile'
@@ -29,7 +29,7 @@ steps:
   inputs:
     containerRegistry: 'DestnACRLogin'
     command: 'login'
-    
+
 - task: Docker@2
   inputs:
     containerRegistry: 'DestnACRLogin'
