@@ -33,19 +33,6 @@ steps:
     containerRegistry: 'SourceACRLogin'
     command: 'login'
 
-- task: aquasecScanner@4
-  inputs:
-    image: '$(imageName):$(Build.BuildId)'
-    scanType: 'local'
-    register: false
-    hideBase: false
-    showNegligible: false
-    windowsScannerVersion: '4.2.0'
-    scanner: 'atmsourceacr.azurecr.io/aquasec/scanner:latest'
-    runOptions: '--privileged'
-    connection: 'AquaScanner'
-    caCertificates: true
-    scanMalware: true
 
 - task: Docker@2
   inputs:
