@@ -11,12 +11,12 @@ pool:
 
 
 variables:
-  imagename: 'test'
+  imagename: 'atmdestnacr.azurecr.io/test'
 
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'DestnACRLogin'
+    #containerRegistry: 'DestnACRLogin'
     repository: $(imagename)
     command: 'build'
     Dockerfile: '**/Dockerfile'
