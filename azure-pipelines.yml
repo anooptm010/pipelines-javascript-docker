@@ -9,21 +9,19 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+
+variables:
+  imageName: 'atmdestnacr.azurecr.io/test'
+
 steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'DestnACRLogin'
-    repository: 'test'
+    repository: $(imagename)
     command: 'build'
     Dockerfile: '**/Dockerfile'
-    tags: 'latest1'
+    tags: $(Build.BuildId)
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      echo $(Build.Repository.Name)
-      echo $(Build.BuildId)
 
 - task: Docker@2
   inputs:
@@ -37,7 +35,7 @@ steps:
 
 - task: aquasecScanner@4
   inputs:
-    image: 'test:latest1'
+    image: '$(imageName):$(Build.BuildId)'
     scanType: 'local'
     register: false
     hideBase: false
@@ -45,13 +43,13 @@ steps:
     windowsScannerVersion: '4.2.0'
     scanner: 'atmsourceacr.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged'
-    registry: 'atmdestnacr'
     connection: 'AquaScanner'
     caCertificates: true
+    scanMalware: true
 
 - task: Docker@2
   inputs:
     containerRegistry: 'DestnACRLogin'
     repository: 'test'
     command: 'push'
-    tags: 'latest1'
+    tags: $(Build.BuildId)
