@@ -7,13 +7,49 @@ trigger:
 - master
 
 pool:
-  vmImage: 'velero:v1.1.0'
+  vmImage: 'velero-latest'
+
+variables:
+  imagename: 'atmdestnacr.azurecr.io/test'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Docker@2
+  inputs:
+    #containerRegistry: 'DestnACRLogin'
+    repository: $(imagename)
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    tags: $(Build.BuildId)
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DestnACRLogin'
+    command: 'login'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'SourceACRLogin'
+    command: 'login'
+
+- task: aquasecScanner@4
+  inputs:
+    image: '$(imagename):$(Build.BuildId)'
+    scanType: 'local'
+    register: false
+    hideBase: false
+    showNegligible: false
+    windowsScannerVersion: '4.2.0'
+    scanner: 'atmsourceacr.azurecr.io/aquasec/scanner:latest'
+    runOptions: '--privileged'
+    registry: 'atmdestnacr.azurecr.io'
+    connection: 'AquaScanner'
+    caCertificates: true
+    scanMalware: true
+    
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DestnACRLogin'
+    repository: $(imagename)
+    command: 'push'
+    tags: $(Build.BuildId)
