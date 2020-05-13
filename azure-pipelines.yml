@@ -13,9 +13,10 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'SourceACRLogin'
-    repository: '$(Build.Repository.Name)'
+    repository: 'test'
     command: 'build'
     Dockerfile: '**/Dockerfile'
+    tags: 'latest'
 
 - task: Bash@3
   inputs:
@@ -28,8 +29,10 @@ steps:
   inputs:
     containerRegistry: 'DestnACRLogin'
     command: 'login'
+    
 - task: Docker@2
   inputs:
     containerRegistry: 'DestnACRLogin'
-    repository: '$(Build.Repository.Name)'
+    repository: 'test'
     command: 'push'
+    tags: 'latest'
