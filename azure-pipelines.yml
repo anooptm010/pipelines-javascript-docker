@@ -27,5 +27,9 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'DestnACRLogin'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DestnACRLogin'
     repository: '$(Build.Repository.Name)'
     command: 'push'
