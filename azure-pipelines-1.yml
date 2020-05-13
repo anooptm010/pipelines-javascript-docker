@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'velero-latest'
+  vmImage: 'velero:latest'
 
 variables:
   imagename: 'atmdestnacr.azurecr.io/test'
