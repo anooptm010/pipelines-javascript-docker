@@ -43,6 +43,7 @@ steps:
     windowsScannerVersion: '4.2.0'
     scanner: 'atmsourceacr.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged'
+    registry: 'atmdestnacr.azurecr.io'
     connection: 'AquaScanner'
     caCertificates: true
     scanMalware: true
