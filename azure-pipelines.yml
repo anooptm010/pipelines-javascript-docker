@@ -41,7 +41,7 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'atmsourceacr.azurecr.io/aquasec/scanner:latest'
+    scanner: '$(AQUA_SCANNER_NAME)'
     runOptions: '--privileged'
     registry: 'atmdestnacr.azurecr.io'
     connection: 'AquaScanner'
