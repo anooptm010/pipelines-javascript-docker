@@ -44,7 +44,7 @@ steps:
     scanner: '$(AQUA_SCANNER_NAME)'
     runOptions: '--privileged'
     registry: 'atmdestnacr.azurecr.io'
-    connection: 'AquaScanner'
+    connection: 'Aqua-Console'
     caCertificates: true
     scanMalware: true
     
