@@ -33,6 +33,16 @@ steps:
     containerRegistry: 'SourceACRLogin'
     command: 'login'
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      echo '$(imagename)'
+      echo '$(AQUA_SCANNER_NAME)'
+      echo '$(Build.BuildId)'
+
 - task: aquasecScanner@4
   inputs:
     image: '$(imagename):$(Build.BuildId)'
