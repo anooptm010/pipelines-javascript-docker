@@ -11,11 +11,12 @@ pool:
 
 
 variables:
-  imagename: 'imagedestination1.azurecr.io/test'
+  imagename: 'test'
 
 steps:
 - task: Docker@2
   inputs:
+    containerRegistry: 'Image Destination Registry'
     repository: '$(imagename)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
@@ -27,7 +28,7 @@ steps:
 
 - task: Docker@2
   inputs:
-    #containerRegistry: 'Image Destination Registry'
+    containerRegistry: 'Image Destination Registry'
     repository: '$(imagename)'
     command: 'push'
 
