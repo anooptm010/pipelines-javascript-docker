@@ -16,7 +16,7 @@ variables:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Image Destination Registry'
+    #containerRegistry: 'Image Destination Registry'
     repository: '$(imagename)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
