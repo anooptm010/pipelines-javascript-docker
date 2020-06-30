@@ -28,6 +28,25 @@ steps:
 
 - task: Docker@2
   inputs:
+    containerRegistry: 'Aqua ACR Login'
+    command: 'login'
+
+- task: aquasecScanner@4
+  inputs:
+    image: 'atmdestnacr.azurecr.io/$(imagename):$(Build.BuildId)'
+    scanType: 'local'
+    register: false
+    hideBase: false
+    showNegligible: false
+    windowsScannerVersion: '4.2.0'
+    scanner: 'aquascanner.azurecr.io/aquasec/scanner:latest'
+    runOptions: '--privileged'
+    connection: 'Aqua Scanner Info'
+    caCertificates: true
+    scanMalware: true
+
+- task: Docker@2
+  inputs:
     containerRegistry: 'Image Destination Registry'
     repository: '$(imagename)'
     command: 'push'
