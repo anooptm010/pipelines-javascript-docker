@@ -12,6 +12,7 @@ pool:
 
 variables:
   imagename: 'test'
+  registryname: 'imagedestination1.azurecr.io'
 
 steps:
 - task: Docker@2
@@ -33,7 +34,7 @@ steps:
 
 - task: aquasecScanner@4
   inputs:
-    image: 'atmdestnacr.azurecr.io/$(imagename):$(Build.BuildId)'
+    image: '$(registryname)/$(imagename):$(Build.BuildId)'
     scanType: 'local'
     register: false
     hideBase: false
