@@ -16,21 +16,20 @@ variables:
 steps:
 - task: Docker@2
   inputs:
-    #containerRegistry: 'DestnACRLogin'
-    repository: $(imagename)
+    containerRegistry: 'Image Destination Registry'
+    repository: '$(imagename)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
-    tags: $(Build.BuildId)
 
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'DestnACRLogin'
+    containerRegistry: 'Image Destination Registry'
     command: 'login'
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'SourceACRLogin'
+    containerRegistry: 'Aqua ACR Login'
     command: 'login'
 
 - task: Bash@3
@@ -51,16 +50,15 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: '$(AQUA_SCANNER_NAME)'
+    scanner: 'aquascanner.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged'
-    registry: 'atmdestnacr.azurecr.io'
-    connection: 'Aqua-Console'
+    registry: 'imagedestination1.azurecr.io'
+    connection: 'Aqua Scanner Info'
     caCertificates: true
     scanMalware: true
     
 - task: Docker@2
   inputs:
-    containerRegistry: 'DestnACRLogin'
-    repository: $(imagename)
+    containerRegistry: 'Image Destination Registry'
+    repository: '$(imagename)'
     command: 'push'
-    tags: $(Build.BuildId)
