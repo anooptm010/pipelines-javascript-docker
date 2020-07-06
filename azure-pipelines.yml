@@ -32,6 +32,7 @@ steps:
     containerRegistry: 'Aqua ACR Login'
     command: 'login'
 
+
 - task: aquasecScanner@4
   inputs:
     image: '$(registryname)/$(imagename):$(Build.BuildId)'
