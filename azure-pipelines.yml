@@ -36,6 +36,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'env | sort'
+    
 - task: aquasecScanner@4
   inputs:
     image: '$(registryname)/$(imagename):$(Build.BuildId)'
