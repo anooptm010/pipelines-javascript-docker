@@ -20,4 +20,4 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'docker run  --rm -v acemnldaquacr01.azurecr.io/aquasec/scanner:latest scan --user aqua-nonprod-scanner --password Sc@n3r99 --host https://aquasec-nonprod.ey.com/ --local asp:latest --jsonfile /tmp/out.json --htmlfile /tmp/out.html'
+    script: 'scanner.exe scan -H https://aquasec-nonprod.ey.com/ -U aqua-nonprod-scanner -P Sc@n3r99 --local asp:latest'
