@@ -1,0 +1,43 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
+        tags: |
+          $(tag)
+    
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Aqua NProd Login'
+        command: 'login'
+    
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker pull acemnldaquacr01.azurecr.io/aquasec/scanner:latest
+          
+          
+          docker run  --rm -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp acemnldaquacr01.azurecr.io/aquasec/scanner:latest scan --user aqua-nonprod-scanner --password Sc@n3r99 --host https://aquasec-nonprod.ey.com/ --local asp:latest --jsonfile /tmp/out.json --htmlfile /tmp/out.html > C:\Information Security\AquasecCICD\Logs
