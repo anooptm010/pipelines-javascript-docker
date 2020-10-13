@@ -45,9 +45,10 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: '$AQUA_SCANNER_NAME'
+    scanner: 'acemnldaquacr01.azurecr.io/aquasec/scanner: latest'
     runOptions: '--privileged'
     connection: 'Aqua Scanner Info'
+    customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
 
