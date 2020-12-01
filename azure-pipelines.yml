@@ -12,7 +12,7 @@ pool:
 
 variables:
   imagename: 'test'
-  registryname: 'imagedestination1.azurecr.io'
+  registryname: 'testacr5.azurecr.io'
 
 steps:
 - task: Docker@2
