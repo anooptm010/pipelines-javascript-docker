@@ -39,7 +39,7 @@ steps:
     
 - task: aquasecScanner@4
   inputs:
-    image: '$(registryname)/$(imagename):$(Build.BuildId)'
+    image: 'mcr.microsoft.com/azureml/realtime-fe:1.20201104.1'
     scanType: 'local'
     register: false
     hideBase: false
