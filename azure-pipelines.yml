@@ -34,7 +34,7 @@ steps:
     
 - task: aquasecScanner@4
   inputs:
-    image: 'mcr.microsoft.com/azureml/realtime-fe:1.20201104.1'
+    image: '$(imagename):1'
     scanType: 'local'
     register: false
     hideBase: false
@@ -42,10 +42,12 @@ steps:
     windowsScannerVersion: '4.2.0'
     scanner: 'acemnldaquacr01.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged'
+    registry: 'testacr5'
     connection: 'Aqua Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
+    registerCompliant: true
 
 - task: Docker@2
   inputs:
