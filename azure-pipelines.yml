@@ -34,7 +34,7 @@ steps:
     
 - task: aquasecScanner@4
   inputs:
-    image: '$(imagename):1'
+    image: 'testacr5.azurecr.io/$(imagename):1'
     scanType: 'local'
     register: false
     hideBase: false
