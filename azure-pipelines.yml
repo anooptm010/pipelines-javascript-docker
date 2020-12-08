@@ -43,7 +43,7 @@ steps:
     scanner: 'acemnlpaquacr01.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged'
     registry: 'testacr5'
-    connection: 'Aqua Scanner Info'
+    connection: 'Aqua Prod Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
