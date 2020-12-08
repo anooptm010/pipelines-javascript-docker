@@ -34,7 +34,7 @@ steps:
     
 - task: aquasecScanner@4
   inputs:
-    image: 'testacr5.azurecr.io/$(imagename):215'
+    image: 'testacr5.azurecr.io/$(imagename):$(Build.BuildId)'
     scanType: 'hosted'
     register: false
     hideBase: false
