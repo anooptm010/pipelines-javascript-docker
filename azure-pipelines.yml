@@ -47,6 +47,7 @@ steps:
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
+    registerCompliant: true
 
 - task: Docker@2
   inputs:
