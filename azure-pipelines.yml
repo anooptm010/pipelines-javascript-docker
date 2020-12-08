@@ -24,7 +24,7 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'Aqua ACR Login'
+    containerRegistry: 'Aqua Prod ACR'
     command: 'login'
 
 - task: Bash@3
@@ -40,7 +40,7 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'acemnldaquacr01.azurecr.io/aquasec/scanner:latest'
+    scanner: 'acemnlpaquacr01.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged'
     registry: 'testacr5'
     connection: 'Aqua Scanner Info'
