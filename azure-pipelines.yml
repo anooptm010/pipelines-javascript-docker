@@ -36,7 +36,7 @@ steps:
   inputs:
     image: 'testacr5.azurecr.io/$(imagename):$(Build.BuildId)'
     scanType: 'local'
-    register: false
+    register: true
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
@@ -47,7 +47,6 @@ steps:
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
-    registerCompliant: true
 
 - task: Docker@2
   inputs:
