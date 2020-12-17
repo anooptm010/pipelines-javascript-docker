@@ -24,7 +24,7 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'Aqua NProd Login'
+    containerRegistry: 'Aqua Lab ACR Login'
     command: 'login'
 
 - task: Bash@3
@@ -40,10 +40,10 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'acemnldaquacr01.azurecr.io/aquasec/scanner:latest'
+    scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:5.3.20350'
     runOptions: '--privileged'
     registry: 'testacr5'
-    connection: 'Aqua Scanner Info'
+    connection: 'Aqua Lab Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
