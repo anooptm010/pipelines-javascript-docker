@@ -12,12 +12,12 @@ pool:
 
 variables:
   imagename: 'test'
-  registryname: 'testacr5.azurecr.io'
+  registryname: 'testacr6.azurecr.io'
 
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Image Destination Registry'
+    containerRegistry: 'TestACR6'
     repository: '$(imagename)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
@@ -34,7 +34,7 @@ steps:
     
 - task: aquasecScanner@4
   inputs:
-    image: 'testacr5.azurecr.io/$(imagename):$(Build.BuildId)'
+    image: '$(registryname)/$(imagename):$(Build.BuildId)'
     scanType: 'local'
     register: true
     hideBase: false
@@ -50,7 +50,7 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'Image Destination Registry'
+    containerRegistry: 'TestACR6'
     repository: '$(imagename)'
     command: 'push'
 
