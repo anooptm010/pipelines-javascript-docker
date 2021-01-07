@@ -40,7 +40,7 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:5.3.20350'
+    scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:5.3.21005'
     runOptions: '--privileged'
     registry: 'testacr5'
     connection: 'Aqua Lab Scanner Info'
