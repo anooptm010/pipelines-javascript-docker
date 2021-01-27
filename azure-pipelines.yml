@@ -42,7 +42,7 @@ steps:
     windowsScannerVersion: '4.2.0'
     scanner: 'acemnlpaquacr01.azurecr.io/aquasec/scanner:4.6.20342'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
-    registry: 'testacr5'
+    registry: 'acemnlpaquacr01'
     connection: 'Aqua Prod Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
