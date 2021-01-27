@@ -12,19 +12,19 @@ pool:
 
 variables:
   imagename: 'test'
-  registryname: 'testacr5.azurecr.io'
+  registryname: 'acemnlpaquacr01.azurecr.io'
 
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'TESTACR5'
+    containerRegistry: 'Aqua Prod ACR'
     repository: '$(imagename)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'Aqua NProd Login'
+    containerRegistry: 'Aqua Prod ACR'
     command: 'login'
 
 - task: Bash@3
@@ -40,10 +40,10 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'acemnldaquacr01.azurecr.io/aquasec/scanner:latest'
+    scanner: 'acemnlpaquacr01.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
     registry: 'testacr5'
-    connection: 'Aqua Scanner Info'
+    connection: 'Aqua Prod Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
@@ -51,7 +51,7 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'TESTACR5'
+    containerRegistry: 'Aqua Prod ACR'
     repository: '$(imagename)'
     command: 'push'
 
