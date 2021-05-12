@@ -44,7 +44,7 @@ steps:
     windowsScannerVersion: '4.2.0'
     scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
-    registry: 'acemnlpaquacr01'
+    registry: 'mylabtestacr'
     connection: 'Aqua Lab Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
