@@ -32,7 +32,7 @@ steps:
     targetType: 'inline'
     script: |
       echo $AQUA_SCANNER_NAME
-      docker pull stsaquaseclab.azurecr.io/aquasec/scanner:latest
+      docker pull stsaquaseclab.azurecr.io/aquasec/scanner:5.3.21119
     
 - task: aquasecScanner@4
   inputs:
@@ -42,7 +42,7 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:latest'
+    scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:5.3.21119'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
     registry: 'mylabtestacr'
     connection: 'Aqua Lab Scanner Info'
