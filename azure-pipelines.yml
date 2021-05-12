@@ -17,14 +17,14 @@ variables:
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Aqua Prod ACR'
+    containerRegistry: 'Aqua Lab ACR Login'
     repository: '$(imagename)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'Aqua Prod ACR'
+    containerRegistry: 'Aqua Lab ACR Login'
     command: 'login'
 
 - task: Bash@3
@@ -32,7 +32,7 @@ steps:
     targetType: 'inline'
     script: |
       echo $AQUA_SCANNER_NAME
-      docker pull acemnlpaquacr01.azurecr.io/aquasec/scanner:latest
+      docker pull stsaquaseclab.azurecr.io/aquasec/scanner:latest
     
 - task: aquasecScanner@4
   inputs:
@@ -42,7 +42,7 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'acemnlpaquacr01.azurecr.io/aquasec/scanner:latest'
+    scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
     registry: 'acemnlpaquacr01'
     connection: 'Aqua Prod Scanner Info'
