@@ -12,12 +12,12 @@ pool:
 
 variables:
   imagename: 'test'
-  registryname: 'acemnlpaquacr01.azurecr.io'
+  registryname: 'mylabtestacr.azurecr.io'
 
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'Aqua Lab ACR Login'
+    containerRegistry: 'TESTACR5'
     repository: '$(imagename)'
     command: 'build'
     Dockerfile: '**/Dockerfile'
@@ -45,7 +45,7 @@ steps:
     scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
     registry: 'acemnlpaquacr01'
-    connection: 'Aqua Prod Scanner Info'
+    connection: 'Aqua Lab Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
