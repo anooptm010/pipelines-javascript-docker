@@ -12,7 +12,7 @@ pool:
 
 variables:
   imagename: 'test'
-  registryname: 'mylabtestacr.azurecr.io'
+  registryname: 'testacrscanning.azurecr.io'
 
 steps:
 - task: Docker@2
@@ -24,7 +24,7 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'Aqua Lab ACR Login'
+    containerRegistry: 'Aqua NProd Login'
     command: 'login'
 
 - task: Bash@3
@@ -32,7 +32,7 @@ steps:
     targetType: 'inline'
     script: |
       echo $AQUA_SCANNER_NAME
-      docker pull stsaquaseclab.azurecr.io/aquasec/scanner:5.3.21119
+      docker pull acemnldaquacr01.azurecr.io/aquasec/scanner:latest
     
 - task: aquasecScanner@4
   inputs:
@@ -42,10 +42,10 @@ steps:
     hideBase: false
     showNegligible: false
     windowsScannerVersion: '4.2.0'
-    scanner: 'stsaquaseclab.azurecr.io/aquasec/scanner:5.3.21119'
+    scanner: 'acemnldaquacr01.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
-    registry: 'mylabtestacr'
-    connection: 'Aqua Lab Scanner Info'
+    registry: 'testacrscanning'
+    connection: 'Aqua Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
