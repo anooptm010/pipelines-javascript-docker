@@ -49,10 +49,12 @@ steps:
     windowsScannerVersion: '4.2.0'
     scanner: 'acemnldaquacr01.azurecr.io/aquasec/scanner:latest'
     runOptions: '--privileged -e SCALOCK_LOG_LEVEL=DEBUG'
+    registry: 'testacrscanning'
     connection: 'Aqua Scanner Info'
     customFlags: '--direct-cc'
     caCertificates: true
     scanMalware: true
+    registerCompliant: true
 
 - task: Docker@2
   inputs:
