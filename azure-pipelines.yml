@@ -30,13 +30,18 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
+    script: 'docker pull moniseeta/resourceful-image:v1'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
     script: |
       echo $AQUA_SCANNER_NAME
       docker pull acemnldaquacr01.azurecr.io/aquasec/scanner:latest
     
 - task: aquasecScanner@4
   inputs:
-    image: '$(registryname)/$(imagename):$(Build.BuildId)'
+    image: 'moniseeta/resourceful-image:v1'
     scanType: 'local'
     register: false
     hideBase: false
